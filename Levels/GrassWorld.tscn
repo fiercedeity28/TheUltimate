@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://tiles.tres" type="TileSet" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Sprites/tree.png" type="Texture" id=7]
 [ext_resource path="res://Sprites/bush.png" type="Texture" id=8]
 [ext_resource path="res://Sprites/door.PNG" type="Texture" id=9]
+[ext_resource path="res://Sprites/tree_different.png" type="Texture" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 453.486, 186 )
@@ -61,7 +62,7 @@ centered = false
 show_behind_parent = true
 position = Vector2( 88, 264 )
 scale = Vector2( 0.141129, 0.129032 )
-texture = ExtResource( 7 )
+texture = ExtResource( 10 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="tree"]
 
