@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Sprites/basictileset.png" type="Texture" id=1]
+[ext_resource path="res://vine.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 16, 16 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 16, 16 )
+
+[node name="Node2D" type="Node2D"]
+
+[node name="grass" type="Sprite" parent="."]
+position = Vector2( 224, 72 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 30.7516, 30.9802, 34.0335, 35.294 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="grass"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="grass/StaticBody2D"]
+shape = SubResource( 3 )
+
+[node name="cloud" type="Sprite" parent="."]
+position = Vector2( 72, 56 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 31.7871, 94.2372, 32.9305, 32.3318 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="cloud"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cloud/StaticBody2D"]
+shape = SubResource( 3 )
+
+[node name="vine" type="Sprite" parent="."]
+position = Vector2( 72, 144 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 30.8337, 158.118, 33.2726, 34.8201 )
+
+[node name="Area2D" type="Area2D" parent="vine"]
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="vine/Area2D"]
+shape = SubResource( 4 )
+[connection signal="body_entered" from="vine/Area2D" to="vine/Area2D" method="_on_Area2D_body_entered"]
