@@ -8,6 +8,7 @@ func _ready():
 	call_deferred("set_state", states.idle)
 	
 func _input(event):
+	
 	if [states.idle, states.run].has(state):
 		if event.is_action_pressed("jump") && parent.is_grounded:
 			parent.velocity.y = parent.max_jump_velocity
@@ -16,6 +17,7 @@ func _input(event):
 			parent.velocity.y = parent.min_jump_velocity	
 	
 func _state_logic(delta):
+	
 	parent._handle_move_input()
 	parent._apply_gravity(delta)
 	parent._apply_movement()

@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 const UP = Vector2(0, -1)
 const SLOP_STOP = 64
+const TYPE = "Player"
 
 var move_speed = 5 * Globals.UNIT_SIZE
 var velocity = Vector2()
@@ -14,7 +15,7 @@ var is_wall_sliding = false
 var is_dodging = false
 var is_dead = false
 var is_moonwalking = true
-
+var vine_on = false
 
 var max_jump_height = 1.8 * Globals.UNIT_SIZE
 var min_jump_height = 0.1 * Globals.UNIT_SIZE
@@ -35,10 +36,23 @@ func _apply_movement():
 	is_grounded = _check_is_grounded()
 func _apply_gravity(delta):
 	velocity.y += gravity * delta
-
+	
+	#vine stuff
+	if vine_on == true:
+		print("hello")
+		gravity = 0
+		if Input.is_action_pressed("jump"):
+			velocity.y = -move_speed
+		elif Input.is_action_pressed("S"):
+			velocity.y = move_speed
+		else:
+			velocity.y = 0
+	else:
+		gravity = 2 * max_jump_height / pow(jump_duration, 2)
 
 		
 func _handle_move_input():
+	
 	var move_direction = -int(Input.is_action_pressed("move_left")) + int(Input.is_action_pressed("move_right"))
 	velocity.x = lerp(velocity.x, move_speed * move_direction, 0.2)
 	if move_direction != 0:
