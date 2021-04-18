@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/tiles.tres" type="TileSet" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://Sprites/tree_different.png" type="Texture" id=10]
 [ext_resource path="res://Levels/vine1.gd" type="Script" id=11]
 [ext_resource path="res://Sprites/basictileset.png" type="Texture" id=12]
+[ext_resource path="res://HealthItem.tscn" type="PackedScene" id=13]
 [ext_resource path="res://scenes/enemy.tscn" type="PackedScene" id=14]
 [ext_resource path="res://scenes/GUI/GUI.tscn" type="PackedScene" id=15]
 
@@ -736,7 +737,11 @@ texture = ExtResource( 7 )
 [node name="GUI" parent="HUD" instance=ExtResource( 15 )]
 
 [node name="enemy" parent="." instance=ExtResource( 14 )]
-position = Vector2( 600, 264 )
+position = Vector2( 600, 256 )
+type = "ud"
+
+[node name="HealthItem" parent="." instance=ExtResource( 13 )]
+position = Vector2( 840, 240 )
 [connection signal="health_changed" from="Player" to="HUD/GUI" method="_on_Player_health_changed"]
 [connection signal="body_entered" from="Vines/vine1" to="Vines/vine1" method="_on_vine1_body_entered"]
 [connection signal="body_exited" from="Vines/vine1" to="Vines/vine1" method="_on_vine1_body_exited"]

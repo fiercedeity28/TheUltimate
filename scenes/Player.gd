@@ -126,6 +126,21 @@ func damage(amount):
 		#invulnerability_timer.start()
 	_set_health(health - amount)
 
+func gainHealth(amount):
+	if state == STATES.DEAD:
+		return
+
+	if health < max_health:
+		health += amount
+		if health > max_health:
+			health = max_health
+	else:
+		return	
+
+	#$AnimationPlayer.play("take_hit")
+
+	emit_signal("health_changed", health)
+	
 func kill():
 	get_tree().reload_current_scene()
 
