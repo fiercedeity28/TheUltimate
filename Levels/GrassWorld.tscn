@@ -1,9 +1,9 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
-[ext_resource path="res://Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://tiles.tres" type="TileSet" id=2]
+[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/tiles.tres" type="TileSet" id=2]
 [ext_resource path="res://Music/wow.wav" type="AudioStream" id=3]
-[ext_resource path="res://MovingPlatform.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/MovingPlatform.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Music/oh hell yea.wav" type="AudioStream" id=5]
 [ext_resource path="res://Sprites/cloudbackground.png" type="Texture" id=6]
 [ext_resource path="res://Sprites/tree.png" type="Texture" id=7]
@@ -12,11 +12,13 @@
 [ext_resource path="res://Sprites/tree_different.png" type="Texture" id=10]
 [ext_resource path="res://Levels/vine1.gd" type="Script" id=11]
 [ext_resource path="res://Sprites/basictileset.png" type="Texture" id=12]
-
-[sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 32, 32 )
+[ext_resource path="res://scenes/enemy.tscn" type="PackedScene" id=14]
+[ext_resource path="res://scenes/GUI/GUI.tscn" type="PackedScene" id=15]
 
 [sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 32, 32 )
+
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 453.486, 186 )
 
 [node name="GrassWorld" type="Node2D"]
@@ -65,7 +67,7 @@ script = ExtResource( 11 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Vines/vine1"]
 position = Vector2( 16, 16 )
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="Vines/vine1"]
 texture = ExtResource( 12 )
@@ -96,7 +98,7 @@ script = ExtResource( 11 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Vines/vine2"]
 position = Vector2( 16, 16 )
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="Vines/vine2"]
 texture = ExtResource( 12 )
@@ -127,7 +129,7 @@ script = ExtResource( 11 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Vines/vine3"]
 position = Vector2( 16, 16 )
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="Vines/vine3"]
 texture = ExtResource( 12 )
@@ -158,7 +160,7 @@ script = ExtResource( 11 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Vines/vine4"]
 position = Vector2( 16, 16 )
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="Vines/vine4"]
 texture = ExtResource( 12 )
@@ -189,7 +191,7 @@ script = ExtResource( 11 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Vines/vine5"]
 position = Vector2( 16, 16 )
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="Vines/vine5"]
 texture = ExtResource( 12 )
@@ -220,7 +222,7 @@ script = ExtResource( 11 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Vines/vine6"]
 position = Vector2( 16, 16 )
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="Vines/vine6"]
 texture = ExtResource( 12 )
@@ -251,7 +253,7 @@ script = ExtResource( 11 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Vines/vine7"]
 position = Vector2( 16, 16 )
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="Vines/vine7"]
 texture = ExtResource( 12 )
@@ -282,7 +284,7 @@ script = ExtResource( 11 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Vines/vine8"]
 position = Vector2( 16, 16 )
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="Vines/vine8"]
 texture = ExtResource( 12 )
@@ -313,7 +315,7 @@ script = ExtResource( 11 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Vines/vine9"]
 position = Vector2( 16, 16 )
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="Vines/vine9"]
 texture = ExtResource( 12 )
@@ -338,48 +340,6 @@ texture = ExtResource( 12 )
 region_enabled = true
 region_rect = Rect2( 31, 160, 35, 35 )
 
-[node name="Trees" type="Node2D" parent="Vines/vine9"]
-
-[node name="tree" type="Sprite" parent="Vines/vine9/Trees"]
-show_behind_parent = true
-position = Vector2( -4344, -1032 )
-scale = Vector2( 0.141129, 0.129032 )
-texture = ExtResource( 10 )
-
-[node name="StaticBody2D" type="StaticBody2D" parent="Vines/vine9/Trees/tree"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Vines/vine9/Trees/tree/StaticBody2D"]
-position = Vector2( 0, -186 )
-shape = SubResource( 1 )
-
-[node name="tree3" type="Sprite" parent="Vines/vine9/Trees"]
-position = Vector2( -3992, -992 )
-scale = Vector2( 0.141129, 0.129032 )
-texture = ExtResource( 7 )
-
-[node name="tree2" type="Sprite" parent="Vines/vine9/Trees"]
-position = Vector2( -4144, -992 )
-scale = Vector2( 0.141129, 0.129032 )
-texture = ExtResource( 7 )
-
-[node name="tree4" type="Sprite" parent="Vines/vine9/Trees"]
-show_behind_parent = true
-position = Vector2( -4080, -992 )
-scale = Vector2( 0.141129, 0.129032 )
-texture = ExtResource( 7 )
-
-[node name="tree5" type="Sprite" parent="Vines/vine9/Trees"]
-show_behind_parent = true
-position = Vector2( -3744, -1064 )
-scale = Vector2( 0.141129, 0.129032 )
-texture = ExtResource( 7 )
-
-[node name="tree6" type="Sprite" parent="Vines/vine9/Trees"]
-show_behind_parent = true
-position = Vector2( -2960, -904 )
-scale = Vector2( 0.141129, 0.129032 )
-texture = ExtResource( 7 )
-
 [node name="Vines2" type="Node2D" parent="."]
 position = Vector2( -3216, -1640 )
 
@@ -389,7 +349,7 @@ script = ExtResource( 11 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Vines2/vine1"]
 position = Vector2( 16, 16 )
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="Vines2/vine1"]
 texture = ExtResource( 12 )
@@ -420,7 +380,7 @@ script = ExtResource( 11 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Vines2/vine2"]
 position = Vector2( 16, 16 )
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="Vines2/vine2"]
 texture = ExtResource( 12 )
@@ -451,7 +411,7 @@ script = ExtResource( 11 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Vines2/vine3"]
 position = Vector2( 16, 16 )
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="Vines2/vine3"]
 texture = ExtResource( 12 )
@@ -482,7 +442,7 @@ script = ExtResource( 11 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Vines2/vine4"]
 position = Vector2( 16, 16 )
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="Vines2/vine4"]
 texture = ExtResource( 12 )
@@ -513,7 +473,7 @@ script = ExtResource( 11 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Vines2/vine5"]
 position = Vector2( 16, 16 )
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="Vines2/vine5"]
 texture = ExtResource( 12 )
@@ -544,7 +504,7 @@ script = ExtResource( 11 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Vines2/vine6"]
 position = Vector2( 16, 16 )
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="Vines2/vine6"]
 texture = ExtResource( 12 )
@@ -575,7 +535,7 @@ script = ExtResource( 11 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Vines2/vine7"]
 position = Vector2( 16, 16 )
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="Vines2/vine7"]
 texture = ExtResource( 12 )
@@ -606,7 +566,7 @@ script = ExtResource( 11 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Vines2/vine8"]
 position = Vector2( 16, 16 )
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="Vines2/vine8"]
 texture = ExtResource( 12 )
@@ -637,7 +597,7 @@ script = ExtResource( 11 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Vines2/vine9"]
 position = Vector2( 16, 16 )
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="Vines2/vine9"]
 texture = ExtResource( 12 )
@@ -662,53 +622,12 @@ texture = ExtResource( 12 )
 region_enabled = true
 region_rect = Rect2( 31, 160, 35, 35 )
 
-[node name="Trees" type="Node2D" parent="Vines2/vine9"]
-
-[node name="tree" type="Sprite" parent="Vines2/vine9/Trees"]
-show_behind_parent = true
-position = Vector2( -4344, -1032 )
-scale = Vector2( 0.141129, 0.129032 )
-texture = ExtResource( 10 )
-
-[node name="StaticBody2D" type="StaticBody2D" parent="Vines2/vine9/Trees/tree"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Vines2/vine9/Trees/tree/StaticBody2D"]
-position = Vector2( 0, -186 )
-shape = SubResource( 1 )
-
-[node name="tree3" type="Sprite" parent="Vines2/vine9/Trees"]
-position = Vector2( -3992, -992 )
-scale = Vector2( 0.141129, 0.129032 )
-texture = ExtResource( 7 )
-
-[node name="tree2" type="Sprite" parent="Vines2/vine9/Trees"]
-position = Vector2( -4144, -992 )
-scale = Vector2( 0.141129, 0.129032 )
-texture = ExtResource( 7 )
-
-[node name="tree4" type="Sprite" parent="Vines2/vine9/Trees"]
-show_behind_parent = true
-position = Vector2( -4080, -992 )
-scale = Vector2( 0.141129, 0.129032 )
-texture = ExtResource( 7 )
-
-[node name="tree5" type="Sprite" parent="Vines2/vine9/Trees"]
-show_behind_parent = true
-position = Vector2( -3744, -1064 )
-scale = Vector2( 0.141129, 0.129032 )
-texture = ExtResource( 7 )
-
-[node name="tree6" type="Sprite" parent="Vines2/vine9/Trees"]
-show_behind_parent = true
-position = Vector2( -2960, -904 )
-scale = Vector2( 0.141129, 0.129032 )
-texture = ExtResource( 7 )
-
 [node name="Bushes" type="Node2D" parent="."]
 
 [node name="bush" type="Sprite" parent="Bushes"]
 position = Vector2( 920, 376 )
 scale = Vector2( 0.0524194, 0.0483871 )
+z_index = 13
 texture = ExtResource( 8 )
 
 [node name="bush7" type="Sprite" parent="Bushes"]
@@ -733,6 +652,7 @@ texture = ExtResource( 8 )
 show_behind_parent = true
 position = Vector2( 968, 368 )
 scale = Vector2( 0.0524194, 0.0483871 )
+z_index = -27
 texture = ExtResource( 8 )
 
 [node name="bush4" type="Sprite" parent="Bushes"]
@@ -744,6 +664,7 @@ texture = ExtResource( 8 )
 show_behind_parent = true
 position = Vector2( 872, 368 )
 scale = Vector2( 0.0524194, 0.0483871 )
+z_index = -12
 texture = ExtResource( 8 )
 
 [node name="MovingPlatforms" type="Node2D" parent="."]
@@ -764,6 +685,59 @@ speed = 1.565
 [node name="MovingPlatform3" parent="MovingPlatforms" instance=ExtResource( 4 )]
 position = Vector2( 1576, 944 )
 move_to = Vector2( 0, -600 )
+
+[node name="Trees" type="Node2D" parent="."]
+position = Vector2( 4432, 1296 )
+
+[node name="tree" type="Sprite" parent="Trees"]
+show_behind_parent = true
+position = Vector2( -4344, -1032 )
+scale = Vector2( 0.141129, 0.129032 )
+texture = ExtResource( 10 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Trees/tree"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Trees/tree/StaticBody2D"]
+position = Vector2( 0, -186 )
+shape = SubResource( 2 )
+
+[node name="tree3" type="Sprite" parent="Trees"]
+position = Vector2( -3992, -992 )
+scale = Vector2( 0.141129, 0.129032 )
+texture = ExtResource( 7 )
+
+[node name="tree2" type="Sprite" parent="Trees"]
+position = Vector2( -4136, -992 )
+scale = Vector2( 0.141129, 0.129032 )
+z_index = 65
+texture = ExtResource( 7 )
+
+[node name="tree4" type="Sprite" parent="Trees"]
+show_behind_parent = true
+position = Vector2( -4080, -1000 )
+scale = Vector2( 0.141129, 0.129032 )
+z_index = -4
+texture = ExtResource( 7 )
+
+[node name="tree5" type="Sprite" parent="Trees"]
+show_behind_parent = true
+position = Vector2( -3744, -1064 )
+scale = Vector2( 0.141129, 0.129032 )
+texture = ExtResource( 7 )
+
+[node name="tree6" type="Sprite" parent="Trees"]
+show_behind_parent = true
+position = Vector2( -2960, -904 )
+scale = Vector2( 0.141129, 0.129032 )
+texture = ExtResource( 7 )
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="GUI" parent="HUD" instance=ExtResource( 15 )]
+
+[node name="enemy" parent="." instance=ExtResource( 14 )]
+position = Vector2( 600, 264 )
+[connection signal="health_changed" from="Player" to="HUD/GUI" method="_on_Player_health_changed"]
 [connection signal="body_entered" from="Vines/vine1" to="Vines/vine1" method="_on_vine1_body_entered"]
 [connection signal="body_exited" from="Vines/vine1" to="Vines/vine1" method="_on_vine1_body_exited"]
 [connection signal="body_entered" from="Vines/vine2" to="Vines/vine2" method="_on_vine1_body_entered"]

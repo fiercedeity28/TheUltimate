@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Sprites/attack01.png" type="Texture" id=1]
+[ext_resource path="res://scenes/enemy.gd" type="Script" id=2]
+[ext_resource path="res://Hitboxes and Hurtboxes/HitBox.tscn" type="PackedScene" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 1, 4 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 10, 26.4084 )
+
+[node name="enemy" type="KinematicBody2D"]
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 20, 50, 50 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+disabled = true
+
+[node name="U" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 0, -25 )
+
+[node name="D" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 0, 25 )
+
+[node name="L" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( -25, 0 )
+
+[node name="R" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 25, 0 )
+
+[node name="HitBox" parent="." instance=ExtResource( 3 )]
+
+[node name="CollisionShape2D" parent="HitBox" index="0"]
+position = Vector2( -9.24986, 0 )
+shape = SubResource( 2 )
+[connection signal="area_entered" from="HitBox" to="." method="_on_HitBox_area_entered"]
+
+[editable path="HitBox"]
