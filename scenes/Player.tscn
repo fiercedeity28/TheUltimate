@@ -1,39 +1,113 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://scenes/StateMachinePlayer.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Player.gd" type="Script" id=2]
-[ext_resource path="res://Sprites/Sprite-0001.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Player/PlayerEyes.png" type="Texture" id=3]
 [ext_resource path="res://idle.tres" type="Animation" id=4]
 [ext_resource path="res://scenes/run.tres" type="Animation" id=5]
 [ext_resource path="res://scenes/cam.gd" type="Script" id=6]
 [ext_resource path="res://Hitboxes and Hurtboxes/HurtBox.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Sprites/Player/PlayerPants.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/Player/PlayerBody.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/Player/PlayerSideArms.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/Player/PlayerShirt.png" type="Texture" id=11]
+[ext_resource path="res://Sprites/Player/PlayerShoes.png" type="Texture" id=12]
+[ext_resource path="res://Sprites/Player/PlayerHair.png" type="Texture" id=13]
+[ext_resource path="res://scenes/Body.gd" type="Script" id=14]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 10, 16.998 )
+extents = Vector2( 10, 12.2727 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "blink"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:hframes")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.1, 0.101, 1.1, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 3, 3, 3, 3 ]
+}
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 10, 18.43 )
+extents = Vector2( 10, 12.763 )
 
 [node name="Player" type="KinematicBody2D"]
 position = Vector2( 473.679, 287.35 )
-scale = Vector2( 1.378, 1.467 )
-collision_layer = 4
+scale = Vector2( 1.318, 1.482 )
+collision_mask = 2
 script = ExtResource( 2 )
 
 [node name="PhysicsShape" type="CollisionShape2D" parent="."]
+position = Vector2( -1.33203, 6.12892 )
 shape = SubResource( 1 )
 
 [node name="Body" type="Node2D" parent="."]
+script = ExtResource( 14 )
 
-[node name="Sprite" type="Sprite" parent="Body"]
+[node name="Body" type="Sprite" parent="Body"]
+position = Vector2( 4.00162, -3.99106 )
+texture = ExtResource( 9 )
+hframes = 3
+frame = 1
+region_rect = Rect2( 11.1534, 26.3308, 36.4032, 37.5408 )
+
+[node name="Arms" type="Sprite" parent="Body"]
+position = Vector2( 3.00415, 2.87991 )
+texture = ExtResource( 10 )
+hframes = 3
+frame = 1
+region_enabled = true
+region_rect = Rect2( 1.22012, 15, 59.98, 46.6324 )
+
+[node name="Eyes" type="Sprite" parent="Body"]
+position = Vector2( -1.76361, -0.841049 )
 texture = ExtResource( 3 )
-hframes = 2
+hframes = 3
+frame = 1
+region_enabled = true
+region_rect = Rect2( 84, 30, 11, 9 )
+
+[node name="Pants" type="Sprite" parent="Body"]
+position = Vector2( 3.18475, 2.4847 )
+texture = ExtResource( 8 )
+hframes = 3
+frame = 1
+region_enabled = true
+region_rect = Rect2( 1.22012, 15, 59.98, 46.6324 )
+
+[node name="Shirt" type="Sprite" parent="Body"]
+position = Vector2( 3.34552, 2.37685 )
+texture = ExtResource( 11 )
+hframes = 3
+frame = 1
+region_enabled = true
+region_rect = Rect2( 1.22012, 15, 59.98, 46.6324 )
+
+[node name="Shoes" type="Sprite" parent="Body"]
+position = Vector2( 3.3002, 3.24586 )
+texture = ExtResource( 12 )
+hframes = 3
+frame = 1
+region_enabled = true
+region_rect = Rect2( 1.22012, 15, 59.98, 46.6324 )
+
+[node name="Hair" type="Sprite" parent="Body"]
+position = Vector2( 2.8493, 3.17886 )
+texture = ExtResource( 13 )
+hframes = 3
 frame = 1
 region_enabled = true
 region_rect = Rect2( 1.22012, 15, 59.98, 46.6324 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Body"]
+root_node = NodePath("../Eyes")
 anims/PlayerWalkAnim = ExtResource( 4 )
+anims/blink = SubResource( 3 )
 anims/idle = ExtResource( 4 )
 anims/run = ExtResource( 5 )
 
@@ -82,6 +156,7 @@ one_shot = true
 [node name="HurtBox" parent="." instance=ExtResource( 7 )]
 
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
+position = Vector2( -0.932465, 6.00632 )
 shape = SubResource( 2 )
 
 [editable path="HurtBox"]

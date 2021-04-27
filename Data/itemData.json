@@ -1,0 +1,20 @@
+{
+	"Tree Branch":{
+		"ItemCategory": "Resource",
+		"StackSize": 99,
+		"Description": "A sturdy tree branch used for crafting"
+	},
+	"Potion":{
+		"ItemCategory": "Consumable",
+		"AddHealth": 5,
+		"StackSize": 99,
+		"Description": "A potion to heal yourself"
+	},
+	"Iron Sword":{
+		"ItemCategory": "Sword",
+		"ItemAttack": 3,
+		"ItemSpeed": 0.75,
+		"StackSize": 1,
+		"Description": "A cool sword for attacking"
+	}
+}

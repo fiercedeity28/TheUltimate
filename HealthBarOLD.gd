@@ -5,7 +5,7 @@ signal pulse()
 const FLASH_RATE = 0.05
 const N_FLASHES = 4
 
-onready var character = get_tree().get_root().get_node("Player") # get it somewhere
+onready var character = GlobalPlayer # get it somewhere
 
 onready var health_bar = $HealthBar
 onready var health_over = $HealthOver 
@@ -62,7 +62,7 @@ func _flash_damage():
 
 func _on_Player_health_updated(health):
 	connect("health_updated", health_bar, "on_health_updated")
-	_on_health_updated(get_tree().root.get_node("GrassWorld").get_node("Player").health)
+	_on_health_updated(GlobalPlayer.health)
 	#_on_max_health_updated(get_tree().root.get_node("GrassWorld").get_node("Player").max_health)
 
 

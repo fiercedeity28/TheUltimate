@@ -15,15 +15,19 @@ export var max_health = 100
 var health = max_health
 
 
-
-#export (float) var max_health = 100.0
-#signal max_health_updated(max_health)
-#var health = max_health setget _set_health
-#var health = 100
 onready var invulnerability_timer = $InvulnerabilityTimer
 onready var healthbar = get_tree().get_root().get_node("GrassWorld/HUD/HealthBar")
 onready var percentHP = get_tree().get_root().get_node("GrassWorld/HUD/HealthBar/PercentHP")
+"""onready var bodySprite = $Body/Body
+onready var armsSprite = $Body/Arms
+onready var eyeSprite = $Body/Eyes
+onready var pantsSprite = $Body/Pants
+onready var shirtSprite = $Body/Shirt
+onready var shoesSprite = $Body/Shoes
+onready var hairSprite = $Body/Hair
+"""
 
+const composite_sprites = preload("res://scenes/Body.gd")
 
 var move_speed = 5 * Globals.UNIT_SIZE
 var velocity = Vector2()
@@ -60,7 +64,14 @@ func _ready():
 	gravity = 2 * max_jump_height / pow(jump_duration, 2)
 	max_jump_velocity = -sqrt(2*gravity * max_jump_height)
 	min_jump_velocity = -sqrt(2*gravity * min_jump_height)
-	
+	"""bodySprite.texture = composite_sprites.body_spritesheet[0]
+	armsSprite.texture = composite_sprites.arms_spritesheet[0]
+	hairSprite.texture = composite_sprites.hair_spritesheet[0]
+	eyeSprite.texture = composite_sprites.eyes_spritesheet[0]
+	pantsSprite.texture = composite_sprites.pants_spritesheet[0]
+	shirtSprite.texture = composite_sprites.shirt_spritesheet[0]
+	shoesSprite.texture = composite_sprites.shoes_spritesheet[0]
+	"""
 func take_damage(count):
 	if state == STATES.DEAD:
 		return
@@ -71,8 +82,6 @@ func take_damage(count):
 		state = STATES.DEAD
 		emit_signal("died")
 		kill()
-
-	#$AnimationPlayer.play("take_hit")
 
 	emit_signal("health_changed", health)
 	
@@ -98,13 +107,7 @@ func _apply_gravity(delta):
 
 		
 func _handle_move_input():
-	if(Input.is_action_pressed("move_left")):
-		#health -= amount
-		#_set_health(amount)
-		#damage(10)
-#=		percentHP.text = "health"
-		
-		pass
+
 	var move_direction = -int(Input.is_action_pressed("move_left")) + int(Input.is_action_pressed("move_right"))
 	velocity.x = lerp(velocity.x, move_speed * move_direction, 0.2)
 	#Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
@@ -137,8 +140,6 @@ func gainHealth(amount):
 	else:
 		return	
 
-	#$AnimationPlayer.play("take_hit")
-
 	emit_signal("health_changed", health)
 	
 func kill():
@@ -160,37 +161,6 @@ func _set_health(value):
 		kill()
 		emit_signal("killed")
 			
-
-#func _assign_animation():
-#	var anim = "idle"
-	
-	#if !_check_is_grounded():
-	#	anim = "jump"
-	#elif velocity.x != 0:
-	#	anim = "run"
-	
-		
-	#if anim_player.assigned_animation != anim:
-	#	anim_player.play(anim)		
-
-
-
-#func _on_Area2D_body_entered(body):
-	#if body.get("TYPE") == "enemy":
-		#get_tree().reload_current_scene()
-		
-		
-
-
-
-
-#func _on_HurtBox_area_entered(area):
-		#take_damage(20)
-	#_set_health(20)
-	#damage(15)
-	#damage(10)
-		#get_tree().reload_current_scene()
-
 
 
 func _on_Player_max_health_updated(max_health):

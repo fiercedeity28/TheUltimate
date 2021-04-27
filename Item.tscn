@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Item.gd" type="Script" id=1]
+[ext_resource path="res://item_icons/Iron Sword.png" type="Texture" id=2]
+
+[node name="Item" type="Node2D"]
+z_index = 1
+script = ExtResource( 1 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_left = 37.8323
+margin_top = 50.5679
+margin_right = 77.8322
+margin_bottom = 64.5679
+rect_scale = Vector2( 0.7, 0.7 )
+text = "99"
+__meta__ = {
+"_edit_use_anchors_": false
+}

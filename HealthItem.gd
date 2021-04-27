@@ -1,6 +1,7 @@
 extends Area2D
 
 onready var player = get_tree().get_root().get_node("GrassWorld/Player")
+
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
