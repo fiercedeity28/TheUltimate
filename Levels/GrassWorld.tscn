@@ -832,6 +832,16 @@ position = Vector2( 352, 152 )
 collision_layer = 4
 collision_mask = 2
 
+[node name="ItemDrop2" parent="." instance=ExtResource( 18 )]
+position = Vector2( 496, 176 )
+collision_layer = 4
+collision_mask = 2
+
+[node name="ItemDrop3" parent="." instance=ExtResource( 18 )]
+position = Vector2( 184, 200 )
+collision_layer = 4
+collision_mask = 2
+
 [connection signal="health_changed" from="Player" to="HUD/GUI" method="_on_Player_health_changed"]
 [connection signal="body_entered" from="Vines/vine1" to="Vines/vine1" method="_on_vine1_body_entered"]
 [connection signal="body_exited" from="Vines/vine1" to="Vines/vine1" method="_on_vine1_body_exited"]

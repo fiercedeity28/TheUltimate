@@ -124,6 +124,13 @@ func _check_is_grounded():
 			return true
 	return false
 
+func _input(event):
+	if event.is_action_pressed("pickup"):
+		if $PickupZone.items_in_range.size() > 0:
+			var pickup_item = $PickupZone.items_in_range.values()[0]
+			pickup_item.pick_up_item(self)
+			$PickupZone.items_in_range.erase(pickup_item)
+
 func damage(amount):
 	#if invulnerability_timer.is_stopped():
 		#invulnerability_timer.start()
@@ -165,5 +172,10 @@ func _set_health(value):
 
 func _on_Player_max_health_updated(max_health):
 	pass # Replace with function body.
+
+
+var items_in_range = {}
+
+
 
 
