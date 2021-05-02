@@ -10,6 +10,7 @@ func _ready():
 	for i in range(slots.size()):
 		slots[i].connect("gui_input", self, "slot_gui_input", [slots[i]])
 		slots[i].slot_index = i
+		slots[i].slot_type = SlotClass.SlotType.INVENTORY
 	initialize_inventory()
 func initialize_inventory():
 	var slots = inventory_slots.get_children()
