@@ -16,5 +16,20 @@
 		"ItemSpeed": 0.75,
 		"StackSize": 1,
 		"Description": "A cool sword for attacking"
+	},
+	"Brown Shirt":{
+		"ItemCategory": "Shirt",
+		"StackSize": 1,
+		"Description": "A brown shirt!!"
+	},
+	"Blue Jeans":{
+		"ItemCategory": "Pants",
+		"StackSize": 1,
+		"Description": "Blue jeans!!"
+	},
+	"Brown Boots":{
+		"ItemCategory": "Shoes",
+		"StackSize": 1,
+		"Description": "Brown boots!!"
 	}
 }

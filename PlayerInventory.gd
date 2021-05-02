@@ -10,14 +10,19 @@ var inventory = {
 	0: ["Iron Sword", 1],
 	1: ["Iron Sword", 1],
 	2: ["Potion", 98],
-	3: ["Potion", 45]
+	3: ["Potion", 45],
 }
 
 var hotbar =  {
 	0: ["Iron Sword", 1],
 	1: ["Iron Sword", 1],
 	2: ["Potion", 98],
-	3: ["Potion", 45]
+	3: ["Potion", 45],
+}
+var equips =  {
+	0: ["Iron Sword", 1],
+	1: ["Brown Shirt", 1],
+	2: ["Brown Boots", 1],
 }
 var active_item_slot = 0
 func add_item(item_name, item_quantity):
@@ -42,16 +47,37 @@ func add_item(item_name, item_quantity):
 			inventory[i] = [item_name, item_quantity]
 			return		
 func add_item_to_empty_slot(item: ItemClass, slot: SlotClass):
-	inventory[slot.slot_index] = [item.item_name, item.item_quantity]
-
+	match slot.slotType:
+		SlotClass.SlotType.HOTBAR:
+			hotbar[slot.slot_index] = [item.item_name, item.item_quantity]
+		SlotClass.SlotType.INVENTORY:		
+			inventory[slot.slot_index] = [item.item_name, item.item_quantity]	
+		_:
+			equips[slot.slot_index] = [item.item_name, item.item_quantity]	
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
 func remove_item(slot:SlotClass):
-	inventory.erase(slot.slot_index)
+	match slot.slotType:
+		SlotClass.SlotType.HOTBAR:
+			hotbar.erase(slot.slot_index)
+		SlotClass.SlotType.INVENTORY:		
+			inventory.erase(slot.slot_index)	
+		_:
+			equips.erase(slot.slot_index)	
+			
 func add_item_quantity(slot:SlotClass, quantity_to_add: int):
-	inventory[slot.slot_index][1] += quantity_to_add
+	match slot.slotType:
+		SlotClass.SlotType.HOTBAR:
+			hotbar[slot.slot_index][1] += quantity_to_add
+		SlotClass.SlotType.INVENTORY:		
+			inventory[slot.slot_index][1] += quantity_to_add	
+		_:
+			equips[slot.slot_index][1] += quantity_to_add
+	
 func update_slot_visual(slot_index, item_name, new_quantity):
+	
 	var slot = get_tree().root.get_node("/root/GrassWorld/HUD/Inventory/TextureRect/GridContainer/Slot" + str(slot_index + 1))
 	if slot.item != null:
 		slot.item.set_item(item_name, new_quantity)

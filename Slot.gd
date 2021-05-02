@@ -10,10 +10,13 @@ var selected_style: StyleBoxTexture = null
 var ItemClass = preload("res://Item.tscn")
 var item = null
 var slot_index
-var slot_type
+var slotType = null
 enum SlotType {
 	HOTBAR = 0,
 	INVENTORY,
+	SWORD,
+	SHIRT,
+	SHOES,
 }
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -28,7 +31,7 @@ func _ready():
 #		add_child(item)
 #	refresh_style()
 func refresh_style():
-	if SlotType.HOTBAR == slot_type and PlayerInventory.active_item_slot == slot_index:
+	if slotType == SlotType.HOTBAR and PlayerInventory.active_item_slot == slot_index:
 		set('custom_styles/panel', selected_style)
 	
 	elif item == null:		
@@ -38,7 +41,7 @@ func refresh_style():
 
 func pickFromSlot():
 	remove_child(item)
-	var inventoryNode = find_parent("Inventory")
+	var inventoryNode = find_parent("HUD")
 	inventoryNode.add_child(item)
 	item = null
 	refresh_style()
@@ -46,7 +49,7 @@ func pickFromSlot():
 func putIntoSlot(new_item):
 	item = new_item
 	item.position = Vector2(0,0)
-	var inventoryNode = find_parent("Inventory")
+	var inventoryNode = find_parent("HUD")
 	inventoryNode.remove_child(item)
 	add_child(item)
 	refresh_style()	
