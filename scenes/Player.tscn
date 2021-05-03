@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://scenes/StateMachinePlayer.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Player.gd" type="Script" id=2]
@@ -15,9 +15,13 @@
 [ext_resource path="res://Sprites/Player/PlayerHair.png" type="Texture" id=13]
 [ext_resource path="res://scenes/Body.gd" type="Script" id=14]
 [ext_resource path="res://scenes/PickupZone.gd" type="Script" id=15]
+[ext_resource path="res://SwordAttack.tres" type="Animation" id=16]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10, 12.2727 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 10.36, 5.96384 )
 
 [sub_resource type="Animation" id=3]
 resource_name = "blink"
@@ -34,10 +38,10 @@ tracks/0/keys = {
 "values": [ 3, 3, 3, 3 ]
 }
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 10, 12.763 )
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 10, 12.0091 )
 
 [node name="Player" type="KinematicBody2D"]
@@ -61,12 +65,20 @@ frame = 1
 region_rect = Rect2( 11.1534, 26.3308, 36.4032, 37.5408 )
 
 [node name="Arms" type="Sprite" parent="Body"]
-position = Vector2( 3.00415, 2.87991 )
+position = Vector2( 3.36264, 3.30499 )
+rotation = -0.0106865
 texture = ExtResource( 10 )
 hframes = 3
 frame = 1
 region_enabled = true
 region_rect = Rect2( 1.22012, 15, 59.98, 46.6324 )
+
+[node name="Area2D" type="Area2D" parent="Body/Arms"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Arms/Area2D"]
+position = Vector2( -4.22058, 9.66791 )
+rotation = 1.58267
+shape = SubResource( 2 )
 
 [node name="Eyes" type="Sprite" parent="Body"]
 position = Vector2( -1.76361, -0.841049 )
@@ -93,7 +105,7 @@ region_enabled = true
 region_rect = Rect2( 1.22012, 15, 59.98, 46.6324 )
 
 [node name="Shoes" type="Sprite" parent="Body"]
-position = Vector2( 3.3002, 3.24586 )
+position = Vector2( 3.76964, 3.24586 )
 texture = ExtResource( 12 )
 hframes = 3
 frame = 1
@@ -111,6 +123,7 @@ region_rect = Rect2( 1.22012, 15, 59.98, 46.6324 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Body"]
 root_node = NodePath("../Eyes")
 anims/PlayerWalkAnim = ExtResource( 4 )
+anims/PunchAttack = ExtResource( 16 )
 anims/blink = SubResource( 3 )
 anims/idle = ExtResource( 4 )
 anims/run = ExtResource( 5 )
@@ -161,7 +174,7 @@ one_shot = true
 
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
 position = Vector2( -0.932465, 6.00632 )
-shape = SubResource( 2 )
+shape = SubResource( 4 )
 
 [node name="PickupZone" type="Area2D" parent="."]
 collision_layer = 4
@@ -170,7 +183,7 @@ script = ExtResource( 15 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickupZone"]
 position = Vector2( -0.716949, 5.84479 )
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [connection signal="body_entered" from="PickupZone" to="PickupZone" method="_on_PickupZone_body_entered"]
 [connection signal="body_exited" from="PickupZone" to="PickupZone" method="_on_PickupZone_body_exited"]

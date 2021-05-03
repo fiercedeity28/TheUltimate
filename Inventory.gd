@@ -27,6 +27,8 @@ func initialize_inventory():
 func initialize_equips():
 
 	for i in range(equip_slots.size()):
+		if i == 0:
+			pass
 		if PlayerInventory.equips.has(i):
 			equip_slots[i].initialize_item(PlayerInventory.equips[i][0], PlayerInventory.equips[i][1])
 

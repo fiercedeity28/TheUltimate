@@ -61,6 +61,7 @@ enum STATES {ALIVE, DEAD}
 var state = STATES.ALIVE
 
 func _ready():
+	
 	gravity = 2 * max_jump_height / pow(jump_duration, 2)
 	max_jump_velocity = -sqrt(2*gravity * max_jump_height)
 	min_jump_velocity = -sqrt(2*gravity * min_jump_height)
@@ -169,9 +170,6 @@ func _set_health(value):
 		emit_signal("killed")
 			
 
-
-func _on_Player_max_health_updated(max_health):
-	pass # Replace with function body.
 
 
 var items_in_range = {}

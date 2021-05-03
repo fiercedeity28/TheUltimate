@@ -831,17 +831,17 @@ position = Vector2( 5488, 808 )
 position = Vector2( 4088, 1192 )
 
 [node name="ItemDrop" parent="." instance=ExtResource( 18 )]
-position = Vector2( 352, 152 )
+position = Vector2( 1072, 272 )
 collision_layer = 4
 collision_mask = 2
 
 [node name="ItemDrop2" parent="." instance=ExtResource( 18 )]
-position = Vector2( 496, 176 )
+position = Vector2( 1360, 280 )
 collision_layer = 4
 collision_mask = 2
 
 [node name="ItemDrop3" parent="." instance=ExtResource( 18 )]
-position = Vector2( 184, 200 )
+position = Vector2( 1224, 240 )
 collision_layer = 4
 collision_mask = 2
 

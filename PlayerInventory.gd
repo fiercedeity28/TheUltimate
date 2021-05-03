@@ -8,16 +8,13 @@ const NUM_HOTBAR_SLOTS = 8
 const ItemClass = preload("res://Item.gd")
 var inventory = {
 	0: ["Iron Sword", 1],
-	1: ["Iron Sword", 1],
-	2: ["Potion", 98],
-	3: ["Potion", 45],
+	1: ["Potion", 1],
+	2: ["Potion", 1],
+	3: ["Potion", 1],
 }
 
 var hotbar =  {
-	0: ["Iron Sword", 1],
-	1: ["Iron Sword", 1],
-	2: ["Potion", 98],
-	3: ["Potion", 45],
+	0: ["Iron Sword", 1]
 }
 var equips =  {
 	0: ["Iron Sword", 1],
@@ -25,6 +22,8 @@ var equips =  {
 	2: ["Brown Boots", 1],
 }
 var active_item_slot = 0
+
+
 func add_item(item_name, item_quantity):
 	for item in inventory:
 		if inventory[item][0] == item_name:
@@ -45,7 +44,8 @@ func add_item(item_name, item_quantity):
 		if inventory.has(i) == false:
 			update_slot_visual(i, inventory[i][0], inventory[i][1])
 			inventory[i] = [item_name, item_quantity]
-			return		
+			return
+			
 func add_item_to_empty_slot(item: ItemClass, slot: SlotClass):
 	match slot.slotType:
 		SlotClass.SlotType.HOTBAR:
@@ -55,9 +55,6 @@ func add_item_to_empty_slot(item: ItemClass, slot: SlotClass):
 		_:
 			equips[slot.slot_index] = [item.item_name, item.item_quantity]	
 	
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
 func remove_item(slot:SlotClass):
 	match slot.slotType:
 		SlotClass.SlotType.HOTBAR:
@@ -83,6 +80,7 @@ func update_slot_visual(slot_index, item_name, new_quantity):
 		slot.item.set_item(item_name, new_quantity)
 	else:
 		slot.initialize_item(item_name, new_quantity)	
+		
 func active_item_scroll_up():
 	active_item_slot = (active_item_slot + 1) % NUM_HOTBAR_SLOTS
 	emit_signal("active_item_updated")

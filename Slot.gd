@@ -18,7 +18,7 @@ enum SlotType {
 	SHIRT,
 	SHOES,
 }
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
 	default_style = StyleBoxTexture.new()
 	empty_style = StyleBoxTexture.new()
@@ -26,10 +26,7 @@ func _ready():
 	default_style.texture = default_tex
 	empty_style.texture = empty_tex
 	selected_style.texture = selected_tex
-#	if randi() % 2 == 0:
-#		item = ItemClass.instance()
-#		add_child(item)
-#	refresh_style()
+
 func refresh_style():
 	if slotType == SlotType.HOTBAR and PlayerInventory.active_item_slot == slot_index:
 		set('custom_styles/panel', selected_style)
