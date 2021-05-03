@@ -1,0 +1,74 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Sprites/basictileset.png" type="Texture" id=1]
+[ext_resource path="res://scenes/vine.gd" type="Script" id=2]
+[ext_resource path="res://Animations/movinggrass.tres" type="Texture" id=3]
+[ext_resource path="res://Sprites/dirt.png" type="Texture" id=5]
+
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 16.4849, 16.7164 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 16, 16 )
+
+[node name="Node2D" type="Node2D"]
+
+[node name="grass" type="Sprite" parent="."]
+position = Vector2( 224, 72 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 30.7516, 30.9802, 34.0335, 35.294 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="grass"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="grass/StaticBody2D"]
+shape = SubResource( 5 )
+
+[node name="grassdirt" type="Sprite" parent="."]
+position = Vector2( 408.228, 79.7554 )
+scale = Vector2( 0.985776, 0.984524 )
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 32, 32 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="grassdirt"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="grassdirt/StaticBody2D"]
+shape = SubResource( 5 )
+
+[node name="dirt" type="Sprite" parent="."]
+position = Vector2( 304, 72 )
+scale = Vector2( 0.970588, 0.957143 )
+texture = ExtResource( 5 )
+region_rect = Rect2( 96.3508, 26.2503, 31.3155, 31.3414 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="dirt"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="dirt/StaticBody2D"]
+shape = SubResource( 5 )
+
+[node name="cloud" type="Sprite" parent="."]
+position = Vector2( 72, 56 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 31.7871, 94.2372, 32.9305, 32.3318 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="cloud"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cloud/StaticBody2D"]
+shape = SubResource( 5 )
+
+[node name="vine" type="Sprite" parent="."]
+position = Vector2( 72, 144 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 30.8337, 158.118, 33.2726, 34.8201 )
+
+[node name="Area2D" type="Area2D" parent="vine"]
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="vine/Area2D"]
+shape = SubResource( 2 )
+[connection signal="body_entered" from="vine/Area2D" to="vine/Area2D" method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="vine/Area2D" to="vine/Area2D" method="_on_Area2D_body_exited"]

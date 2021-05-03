@@ -10,3 +10,4 @@ func _on_vine1_body_entered(body):
 func _on_vine1_body_exited(body):
 	if body.get("TYPE") == "Player":
 			body.vine_on = false
+
